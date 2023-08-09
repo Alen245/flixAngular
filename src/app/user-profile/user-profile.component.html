@@ -1,8 +1,14 @@
-<div *ngIf="!editingMode; else editMode">
+
+  <div *ngIf="!editingMode; else editMode">
     <h2>User Profile</h2>
     <p><strong>Username:</strong> {{ userProfile.Username }}</p>
     <p><strong>Email:</strong> {{ userProfile.Email }}</p>
+    <h3>Favorite Movies:</h3>
+    <ul>
+      <li *ngFor="let favoriteMovie of favorites">{{ favoriteMovie.Title }}</li>
+    </ul>
     <button mat-button color="primary" (click)="enableEditingMode()">Edit Profile</button>
+    <button mat-button color="primary" (click)="goBackToMovies()">Back to Movies</button> 
   </div>
   
   <ng-template #editMode>

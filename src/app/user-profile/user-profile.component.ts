@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FetchApiDataService } from '../fetch-api-data.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-profile',
@@ -9,11 +10,14 @@ import { FetchApiDataService } from '../fetch-api-data.service';
 export class UserProfileComponent implements OnInit {
   userProfile: any = {};
   editingMode: boolean = false;
+  favorites: any[] = [];
 
-  constructor(private fetchApiData: FetchApiDataService) { }
+  constructor(private fetchApiData: FetchApiDataService,
+    private router: Router ) { }
 
   ngOnInit(): void {
     this.fetchUserProfile();
+    this.getFavorites();
   }
 
   fetchUserProfile(): void {
@@ -36,5 +40,12 @@ export class UserProfileComponent implements OnInit {
   cancelEditing(): void {
     this.editingMode = false;
   }
-  
+  getFavorites(): void {
+    this.fetchApiData.getFavoriteMovies().subscribe((response) => {
+      this.favorites = response;
+    });
+  }
+  goBackToMovies(): void {
+    this.router.navigate(['/movies']); // Navigate to the movies view
+  }
 }

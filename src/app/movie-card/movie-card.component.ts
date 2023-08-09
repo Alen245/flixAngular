@@ -65,4 +65,5 @@ export class MovieCardComponent implements OnInit { // Add 'implements OnInit'
       this.favorites = response;
     });
   }
+  
 }

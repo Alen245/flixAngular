@@ -1,0 +1,21 @@
+<div *ngIf="!editingMode; else editMode">
+    <h2>User Profile</h2>
+    <p><strong>Username:</strong> {{ userProfile.Username }}</p>
+    <p><strong>Email:</strong> {{ userProfile.Email }}</p>
+    <button mat-button color="primary" (click)="enableEditingMode()">Edit Profile</button>
+  </div>
+  
+  <ng-template #editMode>
+    <h2>Edit Profile</h2>
+    <form (ngSubmit)="updateUserProfile()" #profileForm="ngForm">
+      <label for="username">Username:</label>
+      <input type="text" id="username" [(ngModel)]="userProfile.Username" name="username" required>
+  
+      <label for="email">Email:</label>
+      <input type="email" id="email" [(ngModel)]="userProfile.Email" name="email" required>
+  
+      <button mat-button color="primary" type="submit">Save Changes</button>
+      <button mat-button color="warn" (click)="cancelEditing()">Cancel</button>
+    </form>
+  </ng-template>
+  

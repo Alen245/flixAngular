@@ -1,0 +1,45 @@
+/* Applying a grid container to the parent div */
+.movie-card-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(480px, 1fr)); /* Create a grid with 480px columns */
+    gap: 20px; /* Add spacing between grid items */
+    justify-content: space-between; /* Distribute space between rows */
+  }
+  
+  /* Styling for each movie card */
+  .mat-card {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Container for the aspect ratio technique */
+  .image-container {
+    flex: 1; /* Expand to fill the card */
+    position: relative;
+    overflow: hidden;
+    width: 100%; /* Ensure the image container fills the card width */
+  }
+  
+  /* Style the image within the aspect ratio container */
+  .mat-card img {
+    width: 100%; /* Set explicit width */
+    height: 100%; /* Set explicit height */
+    object-fit: cover; /* Ensure images cover the entire space while maintaining aspect ratio */
+  }
+  
+  /* Adjust other card elements */
+  .mat-card-content {
+    flex-grow: 1; /* Allow content to expand within the card */
+  }
+  
+  .mat-card-title,
+  .mat-card-subtitle {
+    margin: 8px 0;
+  }
+  
+  /* Center card actions horizontally */
+  .mat-card-actions {
+    display: flex;
+    justify-content: center;
+  }
+  

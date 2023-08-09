@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FetchApiDataService } from '../fetch-api-data.service';
 import { MatDialog } from '@angular/material/dialog'; // Import MatDialog
 import { MovieDialogComponent } from '../movie-dialog/movie-dialog.component'; // Import your movie-dialog component
-
+declare var $: any; 
 @Component({
   selector: 'app-movie-card',
   templateUrl: './movie-card.component.html',
@@ -21,6 +21,10 @@ export class MovieCardComponent implements OnInit { // Add 'implements OnInit'
   ngOnInit(): void {
     this.getMovies();
     this.getFavorites(); 
+  }
+  adjustImageSize(event: any) {
+    const imageId = event.target.id;
+    $('#' + imageId).parent().css('height', $('#' + imageId).width() * 1.5 + 'px');
   }
 
   getMovies(): void {

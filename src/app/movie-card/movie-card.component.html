@@ -10,10 +10,21 @@
             <button mat-button color="primary" (click)="openDialog('details', movie)">
               Details
             </button>
-            <!-- <button mat-button color="primary" (click)="addToFavorites(movie._id)">
-              <mat-icon *ngIf="isFavoriteMovie(movie._id)">favorite</mat-icon>
-              <mat-icon *ngIf="!isFavoriteMovie(movie._id)">favorite_border</mat-icon>
-            </button> -->
+            <button
+            mat-button
+            color="primary"
+            *ngIf="!isFavoriteMovie(movie._id)"
+            (click)="addToFavorites(movie)"
+          >
+            Add to Favorites
+          </button>
+          <mat-icon
+            color="warn"
+            *ngIf="isFavoriteMovie(movie._id)"
+          >
+            favorite
+          </mat-icon>
+        
           </mat-card-actions>
           
     </mat-card>

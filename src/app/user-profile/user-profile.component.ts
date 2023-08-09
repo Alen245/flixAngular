@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FetchApiDataService } from '../fetch-api-data.service';
-import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog'; // Import MatDialog
+import { MovieDialogComponent } from '../movie-dialog/movie-dialog.component'; // Import your movie-dialog component
+import { Router } from '@angular/router'; // Import Router
+
 
 @Component({
   selector: 'app-user-profile',
@@ -12,8 +15,11 @@ export class UserProfileComponent implements OnInit {
   editingMode: boolean = false;
   favorites: any[] = [];
 
-  constructor(private fetchApiData: FetchApiDataService,
-    private router: Router ) { }
+  constructor(
+    private fetchApiData: FetchApiDataService,
+    private router: Router, // Inject Router
+    private dialog: MatDialog // Inject MatDialog
+  ) {}
 
   ngOnInit(): void {
     this.fetchUserProfile();
@@ -48,4 +54,13 @@ export class UserProfileComponent implements OnInit {
   goBackToMovies(): void {
     this.router.navigate(['/movies']); // Navigate to the movies view
   }
+  openDialog(dialogType: string, data: any): void {
+    let dialogRef;
+    if (dialogType === 'details') {
+      dialogRef = this.dialog.open(MovieDialogComponent, {
+        data: { movie: data }
+      });
+    }
+  }
+  
 }

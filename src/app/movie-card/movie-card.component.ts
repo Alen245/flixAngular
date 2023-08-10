@@ -3,6 +3,7 @@ import { FetchApiDataService } from '../fetch-api-data.service';
 import { MatDialog } from '@angular/material/dialog'; // Import MatDialog
 import { MovieDialogComponent } from '../movie-dialog/movie-dialog.component'; // Import your movie-dialog component
 declare var $: any; 
+
 @Component({
   selector: 'app-movie-card',
   templateUrl: './movie-card.component.html',
@@ -11,7 +12,6 @@ declare var $: any;
 export class MovieCardComponent implements OnInit { // Add 'implements OnInit'
 
   movies: any[] = [];
-  favorites: any[] = []; 
 
   constructor(
     public fetchApiData: FetchApiDataService,
@@ -20,8 +20,8 @@ export class MovieCardComponent implements OnInit { // Add 'implements OnInit'
 
   ngOnInit(): void {
     this.getMovies();
-    this.getFavorites(); 
   }
+  
   adjustImageSize(event: any) {
     const imageId = event.target.id;
     $('#' + imageId).parent().css('height', $('#' + imageId).width() * 1.5 + 'px');
@@ -51,23 +51,4 @@ export class MovieCardComponent implements OnInit { // Add 'implements OnInit'
     }
   }
 
-  addToFavorites(movie: any): void {
-    this.fetchApiData.addFavoriteMovie(movie._id).subscribe((response) => {
-      console.log('Added to favorites:', response);
-      this.getFavorites(); // Refresh the favorite movies list
-    });
-  }
-
-  // Method to check if a movie is already in favorites
-  isFavoriteMovie(movieId: string): boolean {
-    return this.favorites.some((favorite) => favorite._id === movieId);
-  }
-
-  // Method to get favorite movies
-  getFavorites(): void {
-    this.fetchApiData.getFavoriteMovies().subscribe((response) => {
-      this.favorites = response;
-    });
-  }
-  
 }

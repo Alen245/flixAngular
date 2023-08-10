@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FetchApiDataService } from '../fetch-api-data.service';
-import { MatDialog } from '@angular/material/dialog'; // Import MatDialog
-import { MovieDialogComponent } from '../movie-dialog/movie-dialog.component'; // Import your movie-dialog component
-import { Router } from '@angular/router'; // Import Router
-
+import { MatDialog } from '@angular/material/dialog';
+import { MovieDialogComponent } from '../movie-dialog/movie-dialog.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-profile',
@@ -11,20 +10,18 @@ import { Router } from '@angular/router'; // Import Router
   styleUrls: ['./user-profile.component.scss']
 })
 export class UserProfileComponent implements OnInit {
+
   userProfile: any = {};
   editingMode: boolean = false;
-  favorites: any[] = [];
 
-  
   constructor(
     private fetchApiData: FetchApiDataService,
-    private router: Router, // Inject Router
-    private dialog: MatDialog // Inject MatDialog
+    private router: Router,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
     this.fetchUserProfile();
-    this.getFavorites();
   }
 
   fetchUserProfile(): void {
@@ -43,18 +40,15 @@ export class UserProfileComponent implements OnInit {
       this.editingMode = false;
     });
   }
-  
+
   cancelEditing(): void {
     this.editingMode = false;
   }
-  getFavorites(): void {
-    this.fetchApiData.getFavoriteMovies().subscribe((response) => {
-      this.favorites = response;
-    });
-  }
+
   goBackToMovies(): void {
-    this.router.navigate(['/movies']); // Navigate to the movies view
+    this.router.navigate(['/movies']);
   }
+
   openDialog(dialogType: string, data: any): void {
     let dialogRef;
     if (dialogType === 'details') {
@@ -63,5 +57,4 @@ export class UserProfileComponent implements OnInit {
       });
     }
   }
-  
 }

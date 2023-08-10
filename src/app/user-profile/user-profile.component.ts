@@ -15,6 +15,7 @@ export class UserProfileComponent implements OnInit {
   editingMode: boolean = false;
   favorites: any[] = [];
 
+  
   constructor(
     private fetchApiData: FetchApiDataService,
     private router: Router, // Inject Router

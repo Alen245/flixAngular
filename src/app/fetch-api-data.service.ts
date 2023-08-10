@@ -8,20 +8,26 @@ import { Observable, throwError } from 'rxjs';
 const apiUrl = 'http://moviepi24.herokuapp.com/';
 
 /**
- * Service to interact with the Movie API.
- * Provided as a singleton service across the app.
+ * @class FetchApiDataService
+ * Service to interact with the Movie API. 
+ * This service is provided as a singleton across the application.
  */
 @Injectable({
   providedIn: 'root'
 })
 export class FetchApiDataService {
 
-  // Injecting the HttpClient service
+  /**
+   * Creates an instance of FetchApiDataService.
+   * @param {HttpClient} http - The HTTP client for making API requests
+   */
   constructor(private http: HttpClient) {}
 
   /**
-   * Registers a new user
-   * @param userDetails - Object containing user details
+   * Registers a new user.
+   * 
+   * @param userDetails - Object containing user details.
+   * @returns {Observable<any>} - An observable of the API response.
    */
   public userRegistration(userDetails: any): Observable<any> {
     console.log(userDetails); // Log user details (Note: logging user details may pose a security risk in production)
@@ -242,4 +248,5 @@ export class FetchApiDataService {
     }
     return throwError(() => new Error('Something bad happened; please try again later.'));
   }
+  
 }

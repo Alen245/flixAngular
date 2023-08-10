@@ -13,6 +13,15 @@
         <button mat-button color="primary" (click)="openDialog('details', movie)">
           Details
         </button>
+        <button *ngIf="!isFavorite(movie._id)" mat-icon-button (click)="addFavorite(movie._id)"
+        matTooltip="Add to favorites">
+        <mat-icon>favorite_border</mat-icon>
+    </button>
+
+    <button *ngIf="isFavorite(movie._id)" mat-icon-button (click)="removeFavorite(movie._id)"
+        matTooltip="Remove from favorites">
+        <mat-icon>favorite</mat-icon>
+    </button>
       </mat-card-actions>
     </mat-card-content>
   </mat-card>

@@ -5,7 +5,7 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 import { Observable, throwError } from 'rxjs';
 
 // API base URL
-const apiUrl = 'http://moviepi24.herokuapp.com/';
+const apiUrl = 'https://moviepi24.herokuapp.com/';
 
 // Service decorator; specifying the service is provided in the root, 
 // meaning it's a singleton and accessible throughout the application
